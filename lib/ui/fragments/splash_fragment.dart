@@ -41,26 +41,29 @@ class SplashFragment extends StatelessWidget {
             ));
   }
 
-  Column buttons(BuildContext context, model) {
+  Column buttons(BuildContext context, AuthViewModel model) {
     return Column(
       children: <Widget>[
         AppButton(
           color: kWarninngColor,
           child: const Text(
-            'Create Account',
+            'Sign Up',
             style: (TextStyle(color: Colors.white)),
           ),
           filled: true,
           radius: 10.0,
           onClicked: () {
-            Navigator.pushNamed(context, '/chats');
+            model.navigateToSignUp(context);
           },
         ),
         UIHelper.verticalSpaceSmall(),
         AppButton(
           color: grey,
           child: const Text('Sign In'),
-          onClicked: () {},
+          onClicked: () {
+            model.navigateToSignIn(context);
+          },
+
           // fixedSize: const Size(250, 250),
           radius: 10.0,
         )

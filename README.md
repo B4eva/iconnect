@@ -20,6 +20,8 @@ I use [getIt] for [dependency injection].
 
 # 
 
+assets i used for this project where just easy to get over the net and nothing else .. :smile:
+
 
 A few resources to get you started if this is your first Flutter project:
 

@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:iconnect/locator.dart';
 import 'package:iconnect/theme/theme.dart';
@@ -14,11 +15,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'IConnect',
+      builder: BotToastInit(),
       theme: lightThemeData(context),
       darkTheme: darkThemeData(context),
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
-      title: 'IConnect',
+      navigatorObservers: [BotToastNavigatorObserver()],
       onGenerateRoute: AppRouter.generateRoute,
       initialRoute: '/',
     );

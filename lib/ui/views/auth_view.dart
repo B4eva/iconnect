@@ -9,7 +9,7 @@ class AuthView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
-        children: const <Widget>[SplashBackground(), SplashFragment()],
+        children: const <Widget>[/*SplashBackground(),*/ SplashFragment()],
       ),
     );
   }

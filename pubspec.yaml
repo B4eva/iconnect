@@ -42,10 +42,19 @@ dependencies:
   # statemanagment provider
   provider: ^6.0.2
 
+  # Use to toast notifications inapp
+  bot_toast: ^4.0.1
+
+
+  cloud_firestore: ^3.1.10
+  firebase_auth: ^3.3.11
+  firebase_core: ^1.13.1
+
 
 
   ## For logging, avoid print statements
   logger: ^1.1.0
+  dio: ^4.0.4
 
 dev_dependencies:
   flutter_test:

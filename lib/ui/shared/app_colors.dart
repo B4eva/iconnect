@@ -4,6 +4,7 @@ const kPrimaryColor = Color.fromRGBO(1, 103, 107, 10);
 const kSecondaryColor = Color.fromRGBO(255, 255, 255, 1);
 const kContentColorLightTheme = Color.fromRGBO(119, 119, 119, 0.94);
 const kContentColorDarkTheme = Color(0xFFF5FCF9);
+const KContentColorPurple = Color.fromRGBO(0, 13, 45, 1);
 const kWarninngColor = Color.fromRGBO(255, 191, 0, 0.94);
 const kErrorColor = Color(0xFFF03738);
 

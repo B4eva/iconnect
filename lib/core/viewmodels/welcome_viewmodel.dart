@@ -4,7 +4,7 @@ import 'package:iconnect/core/viewmodels/base_viewmodel.dart';
 import 'package:iconnect/ui/shared/contant_text.dart';
 import 'package:logger/logger.dart';
 
-class WelcomeViewModel extends BaseViewModel {
+class WelcomeViewModel extends BaseModel {
   Logger logger = getLogger('WelcomeViewModel');
 
   List<String> get welcomeScreenAnimationMessages => welcomeScreenAnimationText;
