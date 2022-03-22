@@ -42,8 +42,8 @@ class _SignInViewState extends State<SignInView> {
                           UIHelper.verticalSpaceLarge(),
                           AppInputField(
                             controller: model.emailController,
-                            hintPlaceHolder: 'User name',
-                            validator: (v) => model.validator.validateName(v),
+                            hintPlaceHolder: 'email',
+                            validator: (v) => model.validator.validateEmail(v),
                           ),
                           UIHelper.verticalSpaceMedium(),
                           AppInputField(
@@ -69,14 +69,8 @@ class _SignInViewState extends State<SignInView> {
                                   ? loadWidget
                                   : const AppText.extraSmallText('Sign In'),
                               onClicked: () {
-                                model.setViewState(ViewState.busy);
                                 if (_formKey.currentState!.validate()) {
-                                  model.setViewState(ViewState.idle);
-                                  model.navigateToHomeView(context);
-                                  showToast(
-                                    msg: 'success',
-                                    status: true,
-                                  );
+                                  model.performLogin(context);
                                 }
                               }),
 

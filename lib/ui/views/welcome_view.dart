@@ -6,13 +6,24 @@ import 'package:iconnect/ui/shared/ui_helpers.dart';
 import 'package:iconnect/ui/views/auth_view.dart';
 import 'package:iconnect/ui/views/base_view.dart';
 
-class WelcomeView extends StatelessWidget {
+class WelcomeView extends StatefulWidget {
   const WelcomeView({Key? key}) : super(key: key);
+
+  @override
+  State<WelcomeView> createState() => _WelcomeViewState();
+}
+
+class _WelcomeViewState extends State<WelcomeView> {
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return BaseView<WelcomeViewModel>(
-      onModelReady: (model) {},
+      onModelReady: (model) {
+        model.navigateFromToken();
+      },
       builder: (context, model, child) => Scaffold(
           body: SafeArea(
               child: SizedBox(
@@ -60,9 +71,13 @@ class WelcomeView extends StatelessWidget {
             const Spacer(),
             FittedBox(
               child: TextButton(
-                  onPressed: () {
-                    model.navigateToAuthView(context);
-                  },
+                  onPressed: model.token != null
+                      ? () {
+                          model.skipAuthentication(context);
+                        }
+                      : () {
+                          model.navigateToAuthView(context);
+                        },
                   child: Row(
                     children: <Widget>[
                       Text(

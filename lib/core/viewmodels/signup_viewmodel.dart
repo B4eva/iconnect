@@ -1,14 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:iconnect/core/enums.dart';
+import 'package:iconnect/core/services/auth_service.dart';
+
 import 'package:iconnect/core/viewmodels/base_viewmodel.dart';
 import 'package:iconnect/ui/views/chats/signup/signup_view.dart';
 
+import '../../locator.dart';
 import '../../ui/views/chats/components/body.dart';
 import '../../utils/validator.dart';
 import '../network/logger.dart';
 
 class SignUpViewModel extends BaseModel {
-  final loggger = getLogger('authViewModel');
+  final log = getLogger('authViewModel');
 
 // input field controllers
   TextEditingController _phoneNumberController = TextEditingController();
@@ -31,6 +34,8 @@ class SignUpViewModel extends BaseModel {
   TextEditingController get passWordController => _passWordController;
   TextEditingController get confirmPassWordController =>
       _confirmPassWordController;
+
+  final AuthService _authService = locator<AuthService>();
 
   final Validator _validator = Validator();
   Validator get validator => _validator;
@@ -59,7 +64,31 @@ class SignUpViewModel extends BaseModel {
     notifyListeners();
   }
 
-  void navigateToCompleteSignup(context) {
+  Future<void> performSignUp(BuildContext context) async {
+    setViewState(ViewState.busy);
+    notifyListeners();
+    try {
+      setViewState(ViewState.busy);
+      await _authService.signUp(
+          _emailController.text,
+          _passWordController.text,
+          _firstNameController.text,
+          _lastNameController.text,
+          _addressController.text,
+          context);
+
+      setViewState(ViewState.idle);
+      notifyListeners();
+
+      //  navigateToSignin(context);
+    } catch (e) {
+      log.e('preformLogin Exception $e');
+      setViewState(ViewState.idle);
+      notifyListeners();
+    }
+  }
+
+  void navigateToCompleteSignup(context, name, email, password) {
     Navigator.pushNamed(context, '/signup/complete');
   }
 
@@ -69,6 +98,6 @@ class SignUpViewModel extends BaseModel {
 
   void navigateback(context) {
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (_) => SignUpView()));
+        context, MaterialPageRoute(builder: (_) => const SignUpView()));
   }
 }

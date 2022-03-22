@@ -1,4 +1,6 @@
 import 'package:get_it/get_it.dart';
+import 'package:iconnect/core/services/auth_service.dart';
+import 'package:iconnect/core/services/firebase_auth_service.dart';
 import 'package:iconnect/core/viewmodels/auth_viewmodel.dart';
 import 'package:iconnect/core/viewmodels/chat_viewmodel.dart';
 import 'package:iconnect/core/viewmodels/signin_viewmodel.dart';
@@ -26,4 +28,7 @@ void setupLocator() {
   locator.registerFactory<ChatViewModel>(() => ChatViewModel());
   locator.registerFactory<SignInViewModel>(() => SignInViewModel());
   locator.registerFactory<SignUpViewModel>(() => SignUpViewModel());
+
+  locator.registerLazySingleton(() => FireBaseAuthService());
+  locator.registerLazySingleton(() => AuthService());
 }

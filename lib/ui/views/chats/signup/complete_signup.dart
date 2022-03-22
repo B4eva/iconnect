@@ -4,6 +4,7 @@ import 'package:iconnect/core/viewmodels/signup_viewmodel.dart';
 import 'package:iconnect/ui/shared/app_colors.dart';
 import 'package:iconnect/ui/shared/app_text.dart';
 import 'package:iconnect/ui/views/base_view.dart';
+import 'package:iconnect/ui/views/chats/signup/signup_view.dart';
 import 'package:iconnect/ui/widgets/app_input_field.dart';
 import 'package:iconnect/ui/widgets/iconnect_button.dart';
 import 'package:iconnect/ui/widgets/social_auth.dart';
@@ -13,10 +14,15 @@ import '../../../shared/app_logo.dart';
 import '../../../shared/ui_helpers.dart';
 
 class CompleteSignUp extends StatelessWidget {
-  const CompleteSignUp({Key? key}) : super(key: key);
+  final String? name;
+  final String? email;
+  final String? password;
+  const CompleteSignUp({Key? key, this.name, this.email, this.password})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // final args = ModalRoute.of(context)!.settings.arguments as SignUpView;
     final _formKey = GlobalKey<FormState>();
     return BaseView<SignUpViewModel>(
       onModelReady: (model) {},
@@ -109,11 +115,15 @@ class CompleteSignUp extends StatelessWidget {
                                 : const AppText.extraSmallText('Sign Up'),
                             onClicked: () {
                               if (_formKey.currentState!.validate()) {
-                                model.navigateToSignin(context);
-                                showToast(
-                                  msg: 'success',
-                                  status: true,
+                                showToast(msg: 'User created', status: true);
+                                model.navigateToSignin(
+                                  context,
                                 );
+                                // model.navigateToSignin(context);
+                                // showToast(
+                                //   msg: 'success',
+                                //   status: true,
+                                // );
                               }
 
                               // if (model.checkVal == false) {

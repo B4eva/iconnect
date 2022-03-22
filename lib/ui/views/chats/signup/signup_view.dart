@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconnect/core/network/toast.dart';
 import 'package:iconnect/core/viewmodels/signup_viewmodel.dart';
 import 'package:iconnect/ui/views/base_view.dart';
 import 'package:iconnect/ui/widgets/app_input_field.dart';
@@ -72,7 +73,8 @@ class _SignUpViewState extends State<SignUpView> {
                         hintPlaceHolder: 'Confirm password',
                         validator: (v) {
                           if (model.passWordController.text != v) {
-                            return 'passwords not equal3';
+                            return showToast(
+                                msg: 'passwords not equal', status: false);
                           }
                           return null;
                         },
@@ -94,7 +96,15 @@ class _SignUpViewState extends State<SignUpView> {
                               : const AppText.extraSmallText('Next ->'),
                           onClicked: () {
                             if (_formKey.currentState!.validate()) {
-                              model.navigateToCompleteSignup(context);
+                              model.performSignUp(
+                                context,
+                              );
+
+                              // model.navigateToCompleteSignup(
+                              //     context,
+                              //     model.userNameController.text,
+                              //     model.emailController.text,
+                              //     model.passWordController.text);
                             }
                           }),
 

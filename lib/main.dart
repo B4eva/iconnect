@@ -1,10 +1,21 @@
 import 'package:bot_toast/bot_toast.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:iconnect/locator.dart';
 import 'package:iconnect/theme/theme.dart';
 import 'package:iconnect/ui/router.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  await Firebase.initializeApp();
+
+  await Hive.initFlutter();
+  await Hive.openBox('token');
+
   setupLocator();
   runApp(const MyApp());
 }
@@ -19,7 +30,7 @@ class MyApp extends StatelessWidget {
       builder: BotToastInit(),
       theme: lightThemeData(context),
       darkTheme: darkThemeData(context),
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
       navigatorObservers: [BotToastNavigatorObserver()],
       onGenerateRoute: AppRouter.generateRoute,
