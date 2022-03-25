@@ -47,6 +47,10 @@ class SignInViewModel extends BaseModel {
           _emailController.text, _passWordController.text, context);
 
       setViewState(ViewState.idle);
+      // SharedPreferencesHelper.saveUserEmail(
+      //   _emailController.text,
+      // );
+      //  SharedPreferencesHelper.saveUserLoggedIn(true);
       notifyListeners();
     } catch (e) {
       log.e('preformLogin Exception $e');

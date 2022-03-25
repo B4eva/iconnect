@@ -4,9 +4,11 @@ import 'package:iconnect/core/models/chat_model.dart';
 import 'package:iconnect/core/network/logger.dart';
 import 'package:iconnect/core/viewmodels/base_viewmodel.dart';
 import 'package:iconnect/locator.dart';
+import 'package:iconnect/utils/shared_preferences/shared_preference.dart';
 
 import 'package:logger/logger.dart';
 
+import '../../ui/views/conversation/conversation_view.dart';
 import '../services/auth_service.dart';
 
 class ChatViewModel extends BaseModel {
@@ -20,6 +22,13 @@ class ChatViewModel extends BaseModel {
   void setSelectedIndex(int value) {
     _selectedIndex = value;
     notifyListeners();
+  }
+
+  List<String> users = [];
+
+  getUserInfo() async {
+    var myName = await SharedPreferencesHelper.getUserEmailFromPreference();
+    logger.i('my name $myName');
   }
 
   final List _chatsData = <Chat>[
@@ -85,6 +94,11 @@ class ChatViewModel extends BaseModel {
 
   void navigateToSearch(context) {
     Navigator.pushNamed(context, '/search');
+  }
+
+  createChatRoomAndStartConversation(context) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => ConversationView()));
   }
 
   signOut(context) async {

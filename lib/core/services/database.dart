@@ -9,8 +9,7 @@ class DatabaseService {
         .collection('users')
         .where('name', isEqualTo: username)
         .get()
-        .then((value) =>
-            log.i('user info from database ${value.docs[0]['name']}'));
+        .then((value) => log.i('user info from database ${value}'));
     // FirebaseFirestore.instance
     //     .collection('users')
     //     .where('name', isEqualTo: username)
@@ -22,9 +21,30 @@ class DatabaseService {
     // });
   }
 
+  getUserByEmail(String email) async {
+    return await FirebaseFirestore.instance
+        .collection('user')
+        .where('email', isEqualTo: email)
+        .get()
+        .then((value) =>
+            log.i('user info from database ${value.docs[0].data()}'));
+  }
+
   uploadUserInfo(userMap) {
     FirebaseFirestore.instance.collection('users').add(userMap).catchError((e) {
       log.e('uploadUserInfo Exception ${e.toString()}.');
+    });
+  }
+
+  // create chatroom
+
+  createChatRoom(String chatRoomId, chatRoomMap) {
+    FirebaseFirestore.instance
+        .collection('chatRoom')
+        .doc(chatRoomId)
+        .set(chatRoomMap)
+        .catchError((e) {
+      log.e('create room Exception ${e.toString}');
     });
   }
 }

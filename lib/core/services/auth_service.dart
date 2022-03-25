@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:iconnect/core/network/logger.dart';
@@ -12,6 +14,7 @@ import 'package:iconnect/ui/views/chats/chat_view.dart';
 
 import 'package:iconnect/ui/views/signup/complete_signup.dart';
 import 'package:iconnect/utils/boxes.dart';
+import 'package:iconnect/utils/shared_preferences/shared_preference.dart';
 
 class AuthService {
   final logger = getLogger('Authservice');
@@ -20,13 +23,21 @@ class AuthService {
 
   final DatabaseService _databaseMethods = locator<DatabaseService>();
 
+  // final SharedPreferencesHelper _sharedPreferencesHelper =
+  //     locator<SharedPreferencesHelper>();
+  QuerySnapshot? snapShotUserInfo;
+
   Future<dynamic> signIn(
       String email, String password, BuildContext context) async {
     var response = await _fireBaseAuthService.auth
         .signInWithEmailAndPassword(email: email, password: password)
         .then((value) {
+      //  value = snapShotUserInfo!;
       logger.i('Sign in value here: ${value.user}');
       if (value != null) {
+        // SharedPreferencesHelper.saveUserEmail(
+        //     snapShotUserInfo!.docs[0]['email'].data()!.toString());
+
         Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => const ChatView()));
         showToast(msg: 'Welcome', status: true);
@@ -54,7 +65,7 @@ class AuthService {
       //stores the token
       box.put('tokenId', token);
 
-      logger.i('response token $token');
+      logger.i('response token ${box.get('tokenId')}');
     } catch (e) {
       logger.e('An Exception  on getToken $e');
     }
@@ -75,8 +86,14 @@ class AuthService {
         if (value != null) {
           Map<String, String> userInfoMap = {'name': username, 'email': email};
 
+          // SharedPreferencesHelper.saveUserName(
+          //     snapShotUserInfo!.user!.displayName!);
+          // SharedPreferencesHelper.saveUserEmail(
+          //     snapShotUserInfo!.docs[0]['email'].data()!.toString());
+
           _databaseMethods.uploadUserInfo(userInfoMap);
 
+          SharedPreferencesHelper.saveUserLoggedIn(true);
           Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (context) => const CompleteSignUp()));
         }

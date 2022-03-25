@@ -75,6 +75,7 @@ class _SignUpViewState extends State<SignUpView> {
                           if (model.passWordController.text != v) {
                             return 'Password not Equal';
                           }
+                          return null;
                         },
                         trailing: Icon(
                           model.obscurePass
@@ -97,12 +98,6 @@ class _SignUpViewState extends State<SignUpView> {
                               model.performSignUp(
                                 context,
                               );
-
-                              // model.navigateToCompleteSignup(
-                              //     context,
-                              //     model.userNameController.text,
-                              //     model.emailController.text,
-                              //     model.passWordController.text);
                             }
                           }),
 

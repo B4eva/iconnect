@@ -46,6 +46,7 @@ class Body extends StatelessWidget {
                 itemCount: model.chatData.length,
                 itemBuilder: (context, index) =>
                     buildChatCard(model, index, context, chatsData[index], () {
+                  model.createChatRoomAndStartConversation(context);
                   logger.i(model.chatData[index].name);
                 }),
               ),
