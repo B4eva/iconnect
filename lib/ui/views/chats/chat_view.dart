@@ -9,23 +9,25 @@ class ChatView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<ChatViewModel>(
-        onModelReady: (model) {},
-        builder: (context, model, child) {
-          return Scaffold(
-            appBar: buildAppBar(model, context),
-            body: const Body(),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {},
-              backgroundColor: kPrimaryColor,
-              child: const Icon(
-                Icons.person_add_alt_1,
-                color: Colors.white,
-              ),
-            ),
-            bottomNavigationBar: buildBottomNavigationBar(model),
-          );
-        });
+    return BaseView<ChatViewModel>(onModelReady: (model) {
+      model.getUserInfo();
+    }, builder: (context, model, child) {
+      return Scaffold(
+        appBar: buildAppBar(model, context),
+        body: const Body(),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            model.getUserInfo();
+          },
+          backgroundColor: kPrimaryColor,
+          child: const Icon(
+            Icons.person_add_alt_1,
+            color: Colors.white,
+          ),
+        ),
+        bottomNavigationBar: buildBottomNavigationBar(model),
+      );
+    });
   }
 
   BottomNavigationBar buildBottomNavigationBar(ChatViewModel model) {

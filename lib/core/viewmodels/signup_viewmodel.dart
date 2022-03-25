@@ -8,6 +8,7 @@ import 'package:iconnect/ui/views/signup/signup_view.dart';
 
 import '../../locator.dart';
 import '../../ui/views/chats/components/body.dart';
+import '../../utils/shared_preferences/shared_preference.dart';
 import '../../utils/validator.dart';
 import '../network/logger.dart';
 
@@ -78,6 +79,12 @@ class SignUpViewModel extends BaseModel {
           _lastNameController.text,
           _addressController.text,
           context);
+      // SharedPreferencesHelper.saveUserEmail(
+      //   _emailController.text,
+      // );
+      // SharedPreferencesHelper.saveUserName(
+      //   _userNameController.text,
+      // );
 
       setViewState(ViewState.idle);
       notifyListeners();

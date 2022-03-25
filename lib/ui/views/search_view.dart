@@ -68,7 +68,11 @@ class _SearchViewState extends State<SearchView> {
             shrinkWrap: true,
             itemCount: 1,
             itemBuilder: (context, index) {
-              return const SearchTile(
+              return SearchTile(
+                onTap: () {
+                  print('message');
+                  model.createChatRoomAndStartConversation(context);
+                },
                 username: 'B4eva',
                 email: 'tanzebright@gmail.com',
                 // username: model.searchSnapshot!.docs[index]['name'],
@@ -83,9 +87,11 @@ class _SearchViewState extends State<SearchView> {
 }
 
 class SearchTile extends StatelessWidget {
+  final VoidCallback? onTap;
   final String? username;
   final String? email;
-  const SearchTile({Key? key, this.username, this.email}) : super(key: key);
+  const SearchTile({Key? key, this.username, this.email, this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -108,9 +114,7 @@ class SearchTile extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20), color: Colors.blue),
               child: GestureDetector(
-                  onTap: () {
-                    print('Message');
-                  },
+                  onTap: onTap,
                   child: const Text(
                     'Message',
                     style: TextStyle(color: Colors.white),
