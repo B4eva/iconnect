@@ -4,14 +4,15 @@ import 'package:iconnect/core/viewmodels/signup_viewmodel.dart';
 import 'package:iconnect/ui/shared/app_colors.dart';
 import 'package:iconnect/ui/shared/app_text.dart';
 import 'package:iconnect/ui/views/base_view.dart';
-import 'package:iconnect/ui/views/chats/signup/signup_view.dart';
+
 import 'package:iconnect/ui/widgets/app_input_field.dart';
 import 'package:iconnect/ui/widgets/iconnect_button.dart';
 import 'package:iconnect/ui/widgets/social_auth.dart';
 
 import '../../../../core/enums.dart';
-import '../../../shared/app_logo.dart';
-import '../../../shared/ui_helpers.dart';
+
+import '../../shared/app_logo.dart';
+import '../../shared/ui_helpers.dart';
 
 class CompleteSignUp extends StatelessWidget {
   final String? name;

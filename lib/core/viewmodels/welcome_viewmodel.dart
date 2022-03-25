@@ -44,11 +44,15 @@ class WelcomeViewModel extends BaseModel {
   }
 
   void checkLogin() {
-    var token = Boxes().getTokenBox;
+    var token = Boxes().getTokenBox.values;
+
+    logger.i('welcomeview token $token');
     _token = token.toString();
-    if (token.length != 0) {
+
+    if (token.isNotEmpty) {
       startTime();
     }
+    notifyListeners();
   }
 
   void skipAuthentication(context) {

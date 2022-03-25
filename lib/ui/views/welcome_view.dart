@@ -3,7 +3,6 @@ import 'package:iconnect/core/viewmodels/welcome_viewmodel.dart';
 import 'package:iconnect/ui/shared/app_colors.dart';
 import 'package:iconnect/ui/shared/contant_text.dart';
 import 'package:iconnect/ui/shared/ui_helpers.dart';
-import 'package:iconnect/ui/views/auth_view.dart';
 import 'package:iconnect/ui/views/base_view.dart';
 
 class WelcomeView extends StatefulWidget {
@@ -14,6 +13,7 @@ class WelcomeView extends StatefulWidget {
 }
 
 class _WelcomeViewState extends State<WelcomeView> {
+  @override
   void initState() {
     super.initState();
   }

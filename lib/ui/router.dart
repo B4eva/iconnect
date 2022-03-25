@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:iconnect/ui/views/auth_view.dart';
 import 'package:iconnect/ui/views/chats/chat_view.dart';
-import 'package:iconnect/ui/views/chats/signup/complete_signup.dart';
+import 'package:iconnect/ui/views/search_view.dart';
+
 import 'package:iconnect/ui/views/signin_view.dart';
-import 'package:iconnect/ui/views/chats/signup/signup_view.dart';
+
+import 'package:iconnect/ui/views/signup/complete_signup.dart';
+import 'package:iconnect/ui/views/signup/signup_view.dart';
 import 'package:iconnect/ui/views/welcome_view.dart';
 
 class AppRouter {
@@ -21,6 +24,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const CompleteSignUp());
       case '/chats':
         return MaterialPageRoute(builder: (_) => const ChatView());
+      case '/search':
+        return MaterialPageRoute(builder: (_) => const SearchView());
       default:
         return MaterialPageRoute(builder: (_) {
           return const Scaffold(

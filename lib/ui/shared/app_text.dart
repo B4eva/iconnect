@@ -25,9 +25,10 @@ class AppText extends StatelessWidget {
   const AppText.subheading(this.text, Key? key)
       : style = subheadingStyle,
         super(key: key);
-  const AppText.caption(this.text, Key? key)
-      : style = captionStyle,
-        super(key: key);
+  const AppText.caption(
+    this.text,
+  ) : style = captionStyle;
+
   const AppText.extraSmallText(
     this.text,
   ) : style = extraSmallStyle;

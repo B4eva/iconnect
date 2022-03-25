@@ -7,11 +7,11 @@ import 'package:iconnect/ui/widgets/social_auth.dart';
 import 'package:iconnect/utils/loading_widget.dart';
 
 import '../../../../core/enums.dart';
-import '../../../shared/app_colors.dart';
-import '../../../shared/app_logo.dart';
-import '../../../shared/app_text.dart';
-import '../../../shared/ui_helpers.dart';
-import '../../../widgets/iconnect_button.dart';
+import '../../shared/app_colors.dart';
+import '../../shared/app_logo.dart';
+import '../../shared/app_text.dart';
+import '../../shared/ui_helpers.dart';
+import '../../widgets/iconnect_button.dart';
 
 class SignUpView extends StatefulWidget {
   const SignUpView({Key? key}) : super(key: key);
@@ -73,10 +73,8 @@ class _SignUpViewState extends State<SignUpView> {
                         hintPlaceHolder: 'Confirm password',
                         validator: (v) {
                           if (model.passWordController.text != v) {
-                            return showToast(
-                                msg: 'passwords not equal', status: false);
+                            return 'Password not Equal';
                           }
-                          return null;
                         },
                         trailing: Icon(
                           model.obscurePass

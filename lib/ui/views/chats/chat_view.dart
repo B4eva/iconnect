@@ -13,7 +13,7 @@ class ChatView extends StatelessWidget {
         onModelReady: (model) {},
         builder: (context, model, child) {
           return Scaffold(
-            appBar: buildAppBar(),
+            appBar: buildAppBar(model, context),
             body: const Body(),
             floatingActionButton: FloatingActionButton(
               onPressed: () {},
@@ -48,7 +48,7 @@ class ChatView extends StatelessWidget {
     );
   }
 
-  AppBar buildAppBar() {
+  AppBar buildAppBar(ChatViewModel model, BuildContext context) {
     return AppBar(
       backgroundColor: kPrimaryColor,
       automaticallyImplyLeading: false,
@@ -58,8 +58,15 @@ class ChatView extends StatelessWidget {
           icon: const Icon(
             Icons.search,
           ),
-          onPressed: () {},
-        )
+          onPressed: () {
+            model.navigateToSearch(context);
+          },
+        ),
+        IconButton(
+            onPressed: () {
+              model.signOut(context);
+            },
+            icon: const Icon(Icons.logout))
       ],
     );
   }

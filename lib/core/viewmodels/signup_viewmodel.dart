@@ -3,7 +3,8 @@ import 'package:iconnect/core/enums.dart';
 import 'package:iconnect/core/services/auth_service.dart';
 
 import 'package:iconnect/core/viewmodels/base_viewmodel.dart';
-import 'package:iconnect/ui/views/chats/signup/signup_view.dart';
+import 'package:iconnect/ui/views/signin_view.dart';
+import 'package:iconnect/ui/views/signup/signup_view.dart';
 
 import '../../locator.dart';
 import '../../ui/views/chats/components/body.dart';
@@ -70,6 +71,7 @@ class SignUpViewModel extends BaseModel {
     try {
       setViewState(ViewState.busy);
       await _authService.signUp(
+          _userNameController.text,
           _emailController.text,
           _passWordController.text,
           _firstNameController.text,
@@ -93,7 +95,8 @@ class SignUpViewModel extends BaseModel {
   }
 
   void navigateToSignin(context) {
-    Navigator.pushNamed(context, '/signin');
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (_) => const SignInView()));
   }
 
   void navigateback(context) {

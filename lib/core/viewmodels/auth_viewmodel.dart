@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:iconnect/core/network/logger.dart';
 import 'package:iconnect/core/viewmodels/base_viewmodel.dart';

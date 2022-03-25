@@ -1,10 +1,18 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:iconnect/core/models/chat_model.dart';
 import 'package:iconnect/core/network/logger.dart';
 import 'package:iconnect/core/viewmodels/base_viewmodel.dart';
+import 'package:iconnect/locator.dart';
+
 import 'package:logger/logger.dart';
+
+import '../services/auth_service.dart';
 
 class ChatViewModel extends BaseModel {
   Logger logger = getLogger('ChatViewmodel');
+
+  final AuthService _authService = locator<AuthService>();
 
   int _selectedIndex = 0;
   int get selectedIndex => _selectedIndex;
@@ -74,4 +82,12 @@ class ChatViewModel extends BaseModel {
   ];
 
   List get chatData => _chatsData;
+
+  void navigateToSearch(context) {
+    Navigator.pushNamed(context, '/search');
+  }
+
+  signOut(context) async {
+    await _authService.signOut(context);
+  }
 }

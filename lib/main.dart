@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       builder: BotToastInit(),
       theme: lightThemeData(context),
       darkTheme: darkThemeData(context),
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
       navigatorObservers: [BotToastNavigatorObserver()],
       onGenerateRoute: AppRouter.generateRoute,

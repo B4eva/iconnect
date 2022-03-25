@@ -46,7 +46,7 @@ class AppInputField extends StatelessWidget {
           visible: lable == null ? false : true,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
-            child: AppText.caption(lable ?? '', key),
+            child: AppText.caption(lable ?? ''),
           ),
         ),
         Padding(
@@ -59,7 +59,7 @@ class AppInputField extends StatelessWidget {
             obscureText: password,
             maxLength: maxLength,
             onChanged: onSaved,
-            cursorColor: Theme.of(context).colorScheme.secondary,
+            cursorColor: Theme.of(context).colorScheme.primary,
             textInputAction: TextInputAction.none,
             maxLines: maxLines ?? 1,
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),

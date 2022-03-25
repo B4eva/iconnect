@@ -62,7 +62,17 @@ class _SignInViewState extends State<SignInView> {
                               model.obscure();
                             },
                           ),
-                          UIHelper.verticalSpaceLarge(),
+                          UIHelper.verticalSpaceMedium(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              GestureDetector(
+                                  onTap: () {},
+                                  child: const AppText.caption(
+                                      'Forgot password?')),
+                            ],
+                          ),
+                          UIHelper.verticalSpaceSmall(),
                           AppButton(
                               color: kWarninngColor,
                               child: model.state == ViewState.busy
